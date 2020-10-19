@@ -10,7 +10,7 @@ class DateTimePickerBottomSheet extends StatefulWidget {
 }
 
 const String MIN_DATETIME = '2019-05-15 09:23:10';
-const String MAX_DATETIME = '2019-06-03 21:11:00';
+const String MAX_DATETIME = '2029-06-03 21:11:00';
 const String INIT_DATETIME = '2019-05-16 09:00:00';
 
 class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
@@ -36,9 +36,9 @@ class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
     DatePicker.showDatePicker(
       context,
       minuteDivider: 10,
-      minDateTime: DateTime.parse(MIN_DATETIME),
+      minDateTime: DateTime.now(),
       maxDateTime: DateTime.parse(MAX_DATETIME),
-      initialDateTime: DateTime.parse(INIT_DATETIME),
+      initialDateTime: DateTime.now(),
       dateFormat: _format,
       locale: _locale,
       pickerTheme: DateTimePickerTheme(

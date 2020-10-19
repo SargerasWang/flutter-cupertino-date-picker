@@ -91,7 +91,11 @@ class _DateTimePickerWidgetState extends State<DateTimePickerWidget> {
     this._minTime = minTime;
     this._maxTime = maxTime;
     this._currHour = initTime.hour;
-    this._currMinute = initTime.minute;
+    if(minuteDivider == 1) {
+      this._currMinute = initTime.minute;
+    }else{
+      this._currMinute = initTime.minute % minuteDivider == 0 ? initTime.minute : (initTime.minute + minuteDivider - (initTime.minute % minuteDivider));
+    }
     this._currSecond = initTime.second;
 
     this._minuteDivider = minuteDivider;
@@ -275,7 +279,7 @@ class _DateTimePickerWidgetState extends State<DateTimePickerWidget> {
 
             if (format.contains('m')) {
               // value = minuteDivider * index;
-              int tmp = valueRange.first % 10 == 0 ? valueRange.first : (valueRange.first + 10 - (valueRange.first % 10));
+              int tmp = valueRange.first % minuteDivider == 0 ? valueRange.first : (valueRange.first + minuteDivider - (valueRange.first % minuteDivider));
               value = minuteDivider * index + tmp;
             }
 
@@ -363,7 +367,7 @@ class _DateTimePickerWidgetState extends State<DateTimePickerWidget> {
   /// change the selection of minute picker
   void _changeMinuteSelection(int index) {
     // TODO: copied from time_picker_widget - this looks like it would break date ranges but not taking into account _minuteRange.first
-    int tmp = _minuteRange.first % 10 == 0 ? _minuteRange.first : (_minuteRange.first + 10 - (_minuteRange.first % 10));
+    int tmp = _minuteRange.first % _minuteDivider == 0 ? _minuteRange.first : (_minuteRange.first + _minuteDivider - (_minuteRange.first % _minuteDivider));
     int value = index * _minuteDivider + tmp;
     // int value = index * _minuteDivider;
 //    int value = _minuteRange.first + index;
