@@ -274,7 +274,9 @@ class _DateTimePickerWidgetState extends State<DateTimePickerWidget> {
             int value = valueRange.first + index;
 
             if (format.contains('m')) {
-              value = minuteDivider * index;
+              // value = minuteDivider * index;
+              int tmp = valueRange.first % 10 == 0 ? valueRange.first : (valueRange.first + 10 - (valueRange.first % 10));
+              value = minuteDivider * index + tmp;
             }
 
             return _renderDatePickerItemComponent(value, format);
@@ -361,13 +363,16 @@ class _DateTimePickerWidgetState extends State<DateTimePickerWidget> {
   /// change the selection of minute picker
   void _changeMinuteSelection(int index) {
     // TODO: copied from time_picker_widget - this looks like it would break date ranges but not taking into account _minuteRange.first
-    int value = index * _minuteDivider;
+    int tmp = _minuteRange.first % 10 == 0 ? _minuteRange.first : (_minuteRange.first + 10 - (_minuteRange.first % 10));
+    int value = index * _minuteDivider + tmp;
+    // int value = index * _minuteDivider;
 //    int value = _minuteRange.first + index;
     if (_currMinute != value) {
       _currMinute = value;
       _changeTimeRange();
       _onSelectedChange();
     }
+
   }
 
   /// change the selection of second picker

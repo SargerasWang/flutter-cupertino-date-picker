@@ -35,6 +35,7 @@ class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
   void _showDateTimePicker() {
     DatePicker.showDatePicker(
       context,
+      minuteDivider: 10,
       minDateTime: DateTime.parse(MIN_DATETIME),
       maxDateTime: DateTime.parse(MAX_DATETIME),
       initialDateTime: DateTime.parse(INIT_DATETIME),
