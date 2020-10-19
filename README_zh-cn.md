@@ -14,7 +14,10 @@ Flutter 的日期选择器控件，iOS 样式。
 
 ```yaml
 dependencies:
-  flutter_cupertino_date_picker: ^1.0.26+2
+    flutter_cupertino_date_picker:
+      git:
+        url: https://github.com/SargerasWang/flutter-cupertino-date-picker
+        ref: master
 ```
 
 #### 2\. 获取包
