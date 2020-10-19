@@ -16,9 +16,9 @@ Add this to you package's `pubspec.yaml` file:
 ```yaml
 dependencies:
     flutter_cupertino_date_picker:
-    git:
-      url: https://github.com/SargerasWang/flutter-cupertino-date-picker
-      ref: master
+      git:
+        url: https://github.com/SargerasWang/flutter-cupertino-date-picker
+        ref: master
 ```
 
 #### 2\. Install
