@@ -87,15 +87,33 @@ class _DateTimePickerWidgetState extends State<DateTimePickerWidget> {
     if (initTime.compareTo(maxTime) > 0) {
       initTime = maxTime;
     }
+    if(minuteDivider != 1 ){
+        int tmp = initTime.minute % minuteDivider == 0 ? initTime.minute : (initTime.minute + minuteDivider - (initTime.minute % minuteDivider));
+        if(tmp == 60){
+          initTime = new DateTime(initTime.year, initTime.month, initTime.day, initTime.hour, 0, initTime.second, initTime.millisecond, initTime.microsecond);
+          initTime = initTime.add(Duration(hours: 1));
+          minTime = new DateTime(minTime.year, minTime.month, minTime.day, minTime.hour, 0, minTime.second, minTime.millisecond, minTime.microsecond);
+          minTime = minTime.add(Duration(hours: 1));
+          maxTime = new DateTime(maxTime.year, maxTime.month, maxTime.day, maxTime.hour, 0, maxTime.second, maxTime.millisecond, maxTime.microsecond);
+          maxTime = maxTime.add(Duration(hours: 1));
+        }else{
+          initTime = new DateTime(initTime.year, initTime.month, initTime.day, initTime.hour, tmp, initTime.second, initTime.millisecond, initTime.microsecond);
+        }
+    }
 
     this._minTime = minTime;
     this._maxTime = maxTime;
     this._currHour = initTime.hour;
-    if(minuteDivider == 1) {
+    // if(minuteDivider == 1) {
       this._currMinute = initTime.minute;
-    }else{
-      this._currMinute = initTime.minute % minuteDivider == 0 ? initTime.minute : (initTime.minute + minuteDivider - (initTime.minute % minuteDivider));
-    }
+    // }else{
+    //   int tmp = initTime.minute % minuteDivider == 0 ? initTime.minute : (initTime.minute + minuteDivider - (initTime.minute % minuteDivider));
+    //   if(tmp == 60){
+    //     this._currMinute = 0;
+    //   }else{
+    //     this._currMinute = tmp;
+    //   }
+    // }
     this._currSecond = initTime.second;
 
     this._minuteDivider = minuteDivider;
